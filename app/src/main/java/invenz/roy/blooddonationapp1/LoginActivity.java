@@ -1,6 +1,7 @@
 package invenz.roy.blooddonationapp1;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -24,16 +32,26 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import invenz.roy.blooddonationapp1.utils.Constants;
+import invenz.roy.blooddonationapp1.utils.Urls;
 
 public class LoginActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 1;
-    private EditText etPhoneNumber, etUserName ;
+    private EditText etPhoneNumber;
     private Button btContinue;
     private SignInButton btSignInGmail;
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
+    private boolean isExists;;
 
 
     @Override
@@ -43,10 +61,18 @@ public class LoginActivity extends AppCompatActivity {
 
         init();
 
+        sharedPreferences = getSharedPreferences(Constants.SHARED_PREF_NAME, MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        int isFullyRegistered = sharedPreferences.getInt(Constants.FULLY_REGISTERED_KEY, 0);
+
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser!= null){
+
+        if (currentUser!= null && isFullyRegistered == 2){
             startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+            finish();
+        }else  if(currentUser!= null && isFullyRegistered == 1){
+            startActivity(new Intent(LoginActivity.this, GiveMoreInfoActivity.class));
             finish();
         }
 
@@ -56,22 +82,15 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String sPhoneNo = etPhoneNumber.getText().toString().trim();
-                String sUserName = etUserName.getText().toString().trim();
 
                 if (sPhoneNo.isEmpty()  || sPhoneNo.length() < 11){
                     etPhoneNumber.setError("Enter a valid mobile");
                     etPhoneNumber.requestFocus();
                     return;
 
-                }else if(sUserName.isEmpty()){
-                    etUserName.setError("Enter UserName");
-                    etUserName.requestFocus();
-                    return;
-
                 }else {
                     Intent intent = new Intent(LoginActivity.this, VerifyPhoneActivity.class);
                     intent.putExtra("mobile", sPhoneNo);
-                    intent.putExtra("username", sUserName);
                     startActivity(intent);
 
                 }
@@ -102,7 +121,6 @@ public class LoginActivity extends AppCompatActivity {
         etPhoneNumber = findViewById(R.id.editTextMobile);
         btContinue = findViewById(R.id.buttonContinue_loginAct);
         mAuth = FirebaseAuth.getInstance();
-        etUserName = findViewById(R.id.editTextUserName);
         btSignInGmail = findViewById(R.id.idSigninGmail);
 
 
@@ -159,12 +177,68 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
 
                             /*            Sign in success, update UI with the signed-in user's information              */
+
+                            editor.putString(Constants.LOGGED_IN_WITH_KEY, "email");
+                            editor.commit();
+
                             Log.d("roy", "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            final String firebaseId = user.getUid();
 
-                            startActivity(new Intent(LoginActivity.this, GiveMoreInfoActivity.class));
-                            finish();
-                            Toast.makeText(LoginActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
+
+                            StringRequest stringRequest = new StringRequest(StringRequest.Method.POST, Urls.IS_FIREBASE_ID_EXISTS_URL,
+                                    new Response.Listener<String>() {
+                                        @Override
+                                        public void onResponse(String response) {
+
+                                            try {
+                                                JSONObject jsonObject = new JSONObject(response);
+                                                String code = jsonObject.getString("code");
+
+
+                                                if (code.equals("exists")){
+                                                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                                    //intent.putExtra("phone_no", "no");
+                                                    startActivity(intent);
+
+                                                    finish();
+                                                    Toast.makeText(LoginActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
+
+                                                }else {
+                                                    Intent intent = new Intent(LoginActivity.this, GiveMoreInfoActivity.class);
+                                                    //intent.putExtra("phone_no", "no");
+                                                    startActivity(intent);
+
+                                                    finish();
+                                                    Toast.makeText(LoginActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
+
+                                                }
+                                                Toast.makeText(LoginActivity.this, ""+isExists, Toast.LENGTH_SHORT).show();
+
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+
+                                        }
+                                    }, new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Log.d("roy", "getParams(LoginActivity): "+error);
+                                    error.getStackTrace();
+                                }
+                            }){
+                                @Override
+                                protected Map<String, String> getParams() throws AuthFailureError {
+
+                                    Map<String, String> existMap = new HashMap<>();
+                                    existMap.put("firebase_id", firebaseId);
+                                    return existMap;
+                                }
+                            };
+
+                            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+                            requestQueue.add(stringRequest);
+
 
                         } else {
                             /*                     If sign in fails, display a message to the user.                     */
@@ -177,8 +251,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
-
-
 
 
 

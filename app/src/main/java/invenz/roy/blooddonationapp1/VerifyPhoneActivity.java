@@ -1,6 +1,7 @@
 package invenz.roy.blooddonationapp1;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +25,8 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
+import invenz.roy.blooddonationapp1.utils.Constants;
+
 public class VerifyPhoneActivity extends AppCompatActivity {
 
     //These are the objects needed
@@ -37,9 +40,11 @@ public class VerifyPhoneActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     private Button btVerifyNow;
-    private String mobile, userName;
+    private String mobile;
     private PhoneAuthProvider.ForceResendingToken mResendToken;
     private String code;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
 
 
     @Override
@@ -47,6 +52,9 @@ public class VerifyPhoneActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verify_phone);
 
+
+        sharedPreferences = getSharedPreferences(Constants.SHARED_PREF_NAME, MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
         //initializing objects
         mAuth = FirebaseAuth.getInstance();
@@ -65,7 +73,6 @@ public class VerifyPhoneActivity extends AppCompatActivity {
         //and sending the verification code to the number
         Intent intent = getIntent();
         mobile = intent.getStringExtra("mobile");
-        userName = intent.getStringExtra("username");
         sendVerificationCode(mobile);
 
         Log.d("aaa", "onCreate(Very): "+mobile);
@@ -163,9 +170,11 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             //verification successful we will start the profile activity
-                            Intent intent = new Intent(VerifyPhoneActivity.this, HomeActivity.class);
-                            intent.putExtra("phone_no", mobile);
-                            intent.putExtra("username", userName);
+
+                            editor.putString(Constants.PHONE_NO_KEY, mobile);
+
+                            Intent intent = new Intent(VerifyPhoneActivity.this, GiveMoreInfoActivity.class);
+                            //intent.putExtra("phone_no", mobile);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
 

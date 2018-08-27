@@ -22,6 +22,37 @@
         android:maxLength="11"
         android:hint="Mobile No(01...)"/>
 
+
+
+    <EditText
+        android:id="@+id/idEmail_GiveMoreInfoAct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:maxLength="11"
+        android:hint="Email Address"/>
+
+    <Spinner
+        android:id="@+id/idDivision_GiveMoreInfoAct"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="5dp"></Spinner>
+
+
+    <Spinner
+        android:id="@+id/idDistrict_GiveMoreInfoAct"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="5dp"></Spinner>
+
+
+
+    <Spinner
+        android:id="@+id/idBloodGroup_GiveMoreInfoAct"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="5dp"></Spinner>
+
     <Button
         android:id="@+id/idSubmit_GiveMoreInfoAct"
         android:layout_width="match_parent"

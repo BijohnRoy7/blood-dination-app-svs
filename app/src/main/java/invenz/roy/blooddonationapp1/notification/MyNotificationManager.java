@@ -12,8 +12,6 @@ import invenz.roy.blooddonationapp1.R;
 
 public class MyNotificationManager {
 
-
-
     private Context mContext;
     private int NOTIFICATION_ID =1234;
 
@@ -33,8 +31,11 @@ public class MyNotificationManager {
                 PendingIntent.FLAG_CANCEL_CURRENT
         );
 
+
+
         /*####### Create Notification Builder #######*/
         NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext);
+
 
 
         /*####### Showing Notification ########*/

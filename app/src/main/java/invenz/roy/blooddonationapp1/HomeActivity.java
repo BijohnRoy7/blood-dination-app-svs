@@ -41,18 +41,19 @@ public class HomeActivity extends AppCompatActivity
 
 
     private static final String TAG = "roy" ;
-
-    private String phoneNumber;
+    private String phoneNumber, userName, email, division, district, bloodGroup;
     private FirebaseAuth mAuth;
     private String userId;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -60,8 +61,11 @@ public class HomeActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
 
         /*###                 checking authentication              ###*/
         mAuth = FirebaseAuth.getInstance();
@@ -76,16 +80,26 @@ public class HomeActivity extends AppCompatActivity
         /*###                 getting intent values                ###*/
         userId = mAuth.getUid();
         phoneNumber = getIntent().getStringExtra("phone_no");
-        String userName = getIntent().getStringExtra("username");
+        userName = getIntent().getStringExtra("username");
+        email = getIntent().getStringExtra("email");
+        division = getIntent().getStringExtra("division");
+        district = getIntent().getStringExtra("district");
+        bloodGroup = getIntent().getStringExtra("blood_group");
+
         Log.d("aaa", "onCreate(Home): "+phoneNumber);
 
+
+
+
         /*###          sending values to the server       ###*/
-        saveUserIntoServer(userId, phoneNumber, userName);
+        saveUserIntoServer();
 
 
 
         /*###                    checking token and storing to the server              ###*/
         SharedPreferences sharedPreferences = getSharedPreferences(Constants.SHARED_PREF_NAME, MODE_PRIVATE);
+        sharedPreferences.edit().putInt(Constants.FULLY_REGISTERED_KEY, 2).commit();
+
         String token = sharedPreferences.getString(Constants.TOKEN_KEY, "token");
         //Toast.makeText(this, ""+token, Toast.LENGTH_SHORT).show();
 
@@ -140,7 +154,7 @@ public class HomeActivity extends AppCompatActivity
 
 
     /*####                          storing firebaseId, username & phoneNo into server                   ####*/
-    private void saveUserIntoServer(final String userId, final String phoneNumber, final String userName) {
+    private void saveUserIntoServer() {
 
         StringRequest stringRequest = new StringRequest(StringRequest.Method.POST, Urls.SAVE_USER_INFO_URL,
                 new Response.Listener<String>() {
@@ -172,7 +186,10 @@ public class HomeActivity extends AppCompatActivity
                 userMap.put("firebase_id", userId);
                 userMap.put("user_name", userName);
                 userMap.put("user_phone_no", phoneNumber);
-
+                userMap.put("email", email);
+                userMap.put("division", division);
+                userMap.put("district", district);
+                userMap.put("blood_group", bloodGroup);
                 return userMap;
             }
         };
