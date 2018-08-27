@@ -25,7 +25,7 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="100dp"
         android:layout_below="@id/relativeLayout"
         android:layout_marginTop="-50dp"
         android:background="@mipmap/ic_launcher" />
@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="10dp"
             android:text="May I ask your phone number?"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
             android:textColor="@color/colorPrimary" />
@@ -74,7 +74,7 @@
 
         <Button
             android:id="@+id/buttonContinue_loginAct"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/editTextMobile"
             android:layout_centerHorizontal="true"
@@ -83,6 +83,15 @@
             android:text="Continue"
             android:textAllCaps="false"
             android:textColor="#cdd8f1"/>
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/idSigninGmail"
+            android:layout_width="250dp"
+            android:layout_below="@id/buttonContinue_loginAct"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            ></com.google.android.gms.common.SignInButton>
 
     </RelativeLayout>
 

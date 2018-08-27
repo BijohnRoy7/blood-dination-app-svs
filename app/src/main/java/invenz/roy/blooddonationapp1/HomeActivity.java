@@ -71,17 +71,20 @@ public class HomeActivity extends AppCompatActivity
             finish();
         }
 
+
+
         /*###                 getting intent values                ###*/
         userId = mAuth.getUid();
         phoneNumber = getIntent().getStringExtra("phone_no");
         String userName = getIntent().getStringExtra("username");
         Log.d("aaa", "onCreate(Home): "+phoneNumber);
 
-        /*###          sending value to the server       ###*/
+        /*###          sending values to the server       ###*/
         saveUserIntoServer(userId, phoneNumber, userName);
 
 
 
+        /*###                    checking token and storing to the server              ###*/
         SharedPreferences sharedPreferences = getSharedPreferences(Constants.SHARED_PREF_NAME, MODE_PRIVATE);
         String token = sharedPreferences.getString(Constants.TOKEN_KEY, "token");
         //Toast.makeText(this, ""+token, Toast.LENGTH_SHORT).show();
@@ -135,6 +138,8 @@ public class HomeActivity extends AppCompatActivity
     }
 
 
+
+    /*####                          storing firebaseId, username & phoneNo into server                   ####*/
     private void saveUserIntoServer(final String userId, final String phoneNumber, final String userName) {
 
         StringRequest stringRequest = new StringRequest(StringRequest.Method.POST, Urls.SAVE_USER_INFO_URL,
