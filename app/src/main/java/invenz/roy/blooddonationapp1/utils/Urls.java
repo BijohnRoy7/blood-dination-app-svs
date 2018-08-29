@@ -10,6 +10,7 @@ public class Urls {
     public static final String EDIT_USER_INFO_URL = DEFAULT_URL+"EditUserInfo.php";
     public static final String GET_BLOOD_BANKS_BY_CITY_URL = DEFAULT_URL+"GetBloodBanksByCity.php";
     public static final String SEARCH_ALL_DONORS_URL = DEFAULT_URL+"GetAllDonors.php";
+    public static final String GET_ALL_FACTS_URL = DEFAULT_URL+"GetAllFacts.php";
 
 
 

@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 
 import invenz.roy.blooddonationapp1.R;
 import invenz.roy.blooddonationapp1.activities.BloodBankActivity;
+import invenz.roy.blooddonationapp1.activities.FactsActivity;
 import invenz.roy.blooddonationapp1.activities.SearchActivity;
 
 /**
@@ -76,6 +77,15 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
             startActivity(new Intent(getContext(), BloodBankActivity.class));
+
+            }
+        });
+
+
+        linearLayoutFacts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), FactsActivity.class));
 
             }
         });

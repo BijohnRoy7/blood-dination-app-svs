@@ -1,16 +1,26 @@
     package invenz.roy.blooddonationapp1.activities;
 
+    import android.app.DatePickerDialog;
     import android.content.Intent;
     import android.content.SharedPreferences;
+    import android.graphics.Color;
+    import android.graphics.drawable.ColorDrawable;
+    import android.support.v4.app.DialogFragment;
     import android.support.v7.app.AppCompatActivity;
     import android.os.Bundle;
     import android.util.Log;
     import android.view.View;
     import android.widget.ArrayAdapter;
     import android.widget.Button;
+    import android.widget.DatePicker;
     import android.widget.EditText;
     import android.widget.Spinner;
+    import android.widget.TextView;
     import android.widget.Toast;
+
+    import java.text.DateFormat;
+    import java.util.Calendar;
+    import java.util.Date;
 
     import invenz.roy.blooddonationapp1.R;
     import invenz.roy.blooddonationapp1.utils.Constants;
@@ -18,6 +28,7 @@
     public class GiveMoreInfoActivity extends AppCompatActivity {
 
         private EditText etUserName, etPhoneNo, etEmailAddress;
+        private TextView tvLastDonationDate, tvDateDontKnow;
         private Button btSubmit;
         private Spinner spDivision, spDistrict, spBloodGroup;
         private String sPhoneNo, sEmailAddrress, sUserName, sDivision, sDistrict, sBloodGroup, mPhone;
@@ -25,6 +36,11 @@
         private SharedPreferences sharedPreferences;
         private SharedPreferences.Editor editor;
         private String loggedInWith;
+
+        private int myDate, myMonth, myYear;
+
+        private DatePickerDialog datePickerDialog;
+        private String donationDate, sDonationDate;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +82,57 @@
             spBloodGroup.setAdapter(bloodGroupAdapter);
             /*                                          */
 
+
+
+            /*###                       Click text to show DatePickerDialog                       ###*/
+            tvLastDonationDate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Calendar calendar = Calendar.getInstance();
+                    final int date = calendar.get(Calendar.DATE);
+                    int month = calendar.get(Calendar.MONTH);
+                    int year = calendar.get(Calendar.YEAR);
+
+
+                    datePickerDialog = new DatePickerDialog(GiveMoreInfoActivity.this, new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+                            Toast.makeText(GiveMoreInfoActivity.this, dayOfMonth+"-"+month+"-"+year, Toast.LENGTH_SHORT).show();
+
+                            myDate = dayOfMonth;
+                            myMonth = month+1;
+                            myYear = year;
+
+                            //tvLastDonationDate.setText(myDate+"/"+myMonth+"/"+myYear);
+
+                            donationDate = myDate+"/"+myMonth+"/"+myYear;
+
+                            tvLastDonationDate.setText(donationDate);
+
+                        }
+                    }, date, month,year);
+
+                    datePickerDialog.show();
+
+                }
+            });
+            /*                                                                      */
+
+            tvDateDontKnow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    tvLastDonationDate.setText("Don\'t know");
+                }
+            });
+
+
+
         }
+
+
+
 
 
         /*       initialising widgets        */
@@ -79,6 +145,8 @@
             spDivision = findViewById(R.id.idDivision_GiveMoreInfoAct);
             spDistrict = findViewById(R.id.idDistrict_GiveMoreInfoAct);
             spBloodGroup = findViewById(R.id.idBloodGroup_GiveMoreInfoAct);
+            tvLastDonationDate = findViewById(R.id.idLastDonationDate_GiveMoreInfoAct);
+            tvDateDontKnow = findViewById(R.id.idDateDontKnow_GiveMoreInfoAct);
 
         }
 
@@ -91,6 +159,12 @@
             sDivision = spDivision.getSelectedItem().toString();
             sDistrict = spDistrict.getSelectedItem().toString();
             sBloodGroup = spBloodGroup.getSelectedItem().toString();
+
+            if (donationDate.equals("")){
+                sDonationDate = "Don\'t know";
+            }
+            sDonationDate = donationDate;
+
 
             if (sPhoneNo.equals("no")){
                 sPhoneNo = etPhoneNo.getText().toString().trim();
@@ -128,6 +202,7 @@
                 intent.putExtra("division", sDivision);
                 intent.putExtra("district", sDistrict);
                 intent.putExtra("blood_group", sBloodGroup);
+                intent.putExtra("donation_date", sDonationDate);
 
 
                 if (loggedInWith.equals("email")) {

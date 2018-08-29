@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.GiveMoreInfoActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="10dp">
 
 
     <EditText
@@ -53,11 +54,51 @@
         android:layout_height="45dp"
         android:layout_marginTop="5dp"></Spinner>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Last donation date: "
+            android:layout_marginTop="5dp"
+            android:textSize="16dp"
+            />
+
+        <TextView
+            android:id="@+id/idLastDonationDate_GiveMoreInfoAct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Set"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            android:textSize="16dp"
+            />
+
+
+        <TextView
+            android:id="@+id/idDateDontKnow_GiveMoreInfoAct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Don\'t know"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            android:textSize="16dp"
+            />
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/idSubmit_GiveMoreInfoAct"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Submit"
+        android:layout_marginTop="5dp"
         android:onClick="submitOnClickListener"/>
 
 </LinearLayout>

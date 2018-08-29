@@ -37,7 +37,9 @@
 
         <activity android:name=".activities.GiveMoreInfoActivity" />
         <activity android:name=".activities.BloodBankActivity" />
-        <activity android:name=".activities.SearchActivity"></activity>
+        <activity android:name=".activities.SearchActivity" />
+        <activity android:name=".activities.FactsActivity" />
+        <activity android:name=".activities.MyAccountActivity"></activity>
     </application>
 
 </manifest>

@@ -42,7 +42,7 @@ public class HomeActivity extends AppCompatActivity
 
 
     private static final String TAG = "roy" ;
-    private String phoneNumber, userName, email, division, district, bloodGroup;
+    private String phoneNumber, userName, email, division, district, bloodGroup, lastDonationDate;
     private FirebaseAuth mAuth;
     private String userId;
     private Fragment fragment = null;
@@ -99,6 +99,7 @@ public class HomeActivity extends AppCompatActivity
             division = getIntent().getStringExtra("division");
             district = getIntent().getStringExtra("district");
             bloodGroup = getIntent().getStringExtra("blood_group");
+            lastDonationDate = getIntent().getStringExtra("donation_date");
 
 
             /*###          sending values to the server       ###*/
@@ -216,6 +217,7 @@ public class HomeActivity extends AppCompatActivity
                 userMap.put("division", division);
                 userMap.put("district", district);
                 userMap.put("blood_group", bloodGroup);
+                userMap.put("donation_date", lastDonationDate);
                 return userMap;
             }
         };
