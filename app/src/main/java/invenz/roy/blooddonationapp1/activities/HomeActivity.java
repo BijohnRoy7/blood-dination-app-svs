@@ -14,6 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -33,6 +35,7 @@ import java.util.Map;
 
 import invenz.roy.blooddonationapp1.R;
 import invenz.roy.blooddonationapp1.fragments.EditUserInfoFragment;
+import invenz.roy.blooddonationapp1.fragments.ProfileFragment;
 import invenz.roy.blooddonationapp1.utils.Constants;
 import invenz.roy.blooddonationapp1.utils.Urls;
 
@@ -44,7 +47,8 @@ public class HomeActivity extends AppCompatActivity
     private String phoneNumber, userName, email, division, district, bloodGroup;
     private FirebaseAuth mAuth;
     private String userId;
-    private Fragment fragment = null;;
+    private Fragment fragment = null;
+
 
 
     @Override
@@ -65,6 +69,11 @@ public class HomeActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        /*###                    setting default fragment                         ####*/
+        fragment = new ProfileFragment();
+        setFragment(fragment);
 
 
 
@@ -110,6 +119,15 @@ public class HomeActivity extends AppCompatActivity
         }
 
     }
+
+
+
+
+
+
+
+
+
 
 
     /*           sendRegistrationToServer                   */
@@ -208,11 +226,27 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
+        /*if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+        }*/
+
+
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
         }
+
+        else if (getFragmentManager().getBackStackEntryCount() > 0){
+            getFragmentManager().popBackStack();
+
+        }
+
+        else {
+            super.onBackPressed();
+
+        }
+
     }
 
     @Override
@@ -245,8 +279,12 @@ public class HomeActivity extends AppCompatActivity
 
 
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_home) {
             // Handle the camera action
+
+            fragment = new ProfileFragment();
+            setFragment(fragment);
+
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -280,6 +318,11 @@ public class HomeActivity extends AppCompatActivity
         android.support.v4.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.idFrameLayout, fragment);
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        transaction.addToBackStack(null);
         transaction.commit();
     }
+
+
+
+
 }
