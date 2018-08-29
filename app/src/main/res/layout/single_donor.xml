@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:orientation="vertical"
+    android:background="@drawable/textlines">
+
+
+    <TextView
+        android:id="@+id/idName_singleDonor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="hjashjkhs kak ajks"
+        android:textSize="15dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/idDivision_singleDonor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="hjashjkhs kak ajks"
+        android:textSize="15dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:id="@+id/idDistrict_singleDonor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="hjashjkhs kak ajks"
+        android:textSize="15dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:id="@+id/idBloodGroup_singleDonor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="hjashjkhs kak ajks"
+        android:textSize="15dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:id="@+id/idAvailable_singleDonor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="hjashjkhs kak ajks"
+        android:textSize="15dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"/>
+
+</LinearLayout>

@@ -47,7 +47,7 @@
 
             }else {
                 etPhoneNo.setVisibility(View.GONE); /* logeed in with phone, so hiding phone editText */
-                sPhoneNo = sharedPreferences.getString(Constants.PHONE_NO_KEY, null);
+                sPhoneNo = sharedPreferences.getString(Constants.PHONE_NO_KEY, "");
 
             }
 
@@ -129,14 +129,18 @@
                 intent.putExtra("district", sDistrict);
                 intent.putExtra("blood_group", sBloodGroup);
 
+
                 if (loggedInWith.equals("email")) {
                     intent.putExtra("phone_no", sPhoneNo);
                     intent.putExtra("email", "email");
+
+
                     Log.d("roy", "submitOnClickListener1: "+sUserName+", "+sDivision+", "+sDistrict+", "+sBloodGroup+", "+sEmailAddrress);
 
                 }else {
                     intent.putExtra("email", sEmailAddrress);
                     intent.putExtra("phone_no", sPhoneNo);
+
                     Log.d("roy", "submitOnClickListener: "+sUserName+", "+sDivision+", "+sDistrict+", "+sBloodGroup+", "+sPhoneNo);
 
                 }

@@ -14,8 +14,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -89,20 +87,29 @@ public class HomeActivity extends AppCompatActivity
 
         /*###                 getting intent values                ###*/
         userId = mAuth.getUid();
-        phoneNumber = getIntent().getStringExtra("phone_no");
-        userName = getIntent().getStringExtra("username");
-        email = getIntent().getStringExtra("email");
-        division = getIntent().getStringExtra("division");
-        district = getIntent().getStringExtra("district");
-        bloodGroup = getIntent().getStringExtra("blood_group");
+
+        Bundle extrass = getIntent().getExtras();
+        //Toast.makeText(this, ""+extrass, Toast.LENGTH_SHORT).show();
+
+        if (extrass!=null){
+
+            phoneNumber = getIntent().getStringExtra("phone_no");
+            userName = getIntent().getStringExtra("username");
+            email = getIntent().getStringExtra("email");
+            division = getIntent().getStringExtra("division");
+            district = getIntent().getStringExtra("district");
+            bloodGroup = getIntent().getStringExtra("blood_group");
+
+
+            /*###          sending values to the server       ###*/
+            saveUserInfoServer();
+        }
 
         Log.d("aaa", "onCreate(Home): "+phoneNumber);
 
 
 
 
-        /*###          sending values to the server       ###*/
-        saveUserIntoServer();
 
 
 
@@ -173,7 +180,7 @@ public class HomeActivity extends AppCompatActivity
 
 
     /*####                          storing firebaseId, username & phoneNo into server                   ####*/
-    private void saveUserIntoServer() {
+    private void saveUserInfoServer() {
 
         StringRequest stringRequest = new StringRequest(StringRequest.Method.POST, Urls.SAVE_USER_INFO_URL,
                 new Response.Listener<String>() {

@@ -1,6 +1,7 @@
 package invenz.roy.blooddonationapp1.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import invenz.roy.blooddonationapp1.R;
+import invenz.roy.blooddonationapp1.activities.BloodBankActivity;
+import invenz.roy.blooddonationapp1.activities.SearchActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,11 +63,19 @@ public class ProfileFragment extends Fragment {
 
     private void allOnClicks() {
 
-        linearLayoutMyAccount.setOnClickListener(new View.OnClickListener() {
+        linearLayoutSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(getContext(), SearchActivity.class));
+
+            }
+        });
 
 
+        linearLayoutBloodBanks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            startActivity(new Intent(getContext(), BloodBankActivity.class));
 
             }
         });
