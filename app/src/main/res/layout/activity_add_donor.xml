@@ -8,48 +8,49 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-
-    <EditText
-        android:id="@+id/idUsername_GiveMoreInfoAct"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Username..."/>
+        android:text="Add Donor"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginBottom="15dp"/>
+
 
     <EditText
-        android:id="@+id/idMobileNo_GiveMoreInfoAct"
+        android:id="@+id/idDonorName_AddDonorActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Donor Name..."/>
+
+    <EditText
+        android:id="@+id/idContactNo_AddDonorActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="phone"
         android:maxLength="11"
-        android:hint="Mobile No(01...)"/>
+        android:hint="Donor Mobile No(01...)"/>
 
 
 
     <EditText
-        android:id="@+id/idEmail_GiveMoreInfoAct"
+        android:id="@+id/idAddress_AddDonorActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:maxLength="11"
-        android:hint="Email Address"/>
+        android:hint="Donor Address"/>
 
     <Spinner
-        android:id="@+id/idDivision_GiveMoreInfoAct"
+        android:id="@+id/idCity_AddDonorActivity"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginTop="5dp"></Spinner>
 
 
-    <Spinner
-        android:id="@+id/idDistrict_GiveMoreInfoAct"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginTop="5dp"></Spinner>
-
-
 
     <Spinner
-        android:id="@+id/idBloodGroup_GiveMoreInfoAct"
+        android:id="@+id/idBloodGroup_AddDonorActivity"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginTop="5dp"></Spinner>
@@ -69,7 +70,7 @@
             />
 
         <TextView
-            android:id="@+id/idLastDonationDate_GiveMoreInfoAct"
+            android:id="@+id/idLastDonationDate_AddDonorActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -81,7 +82,7 @@
 
 
         <TextView
-            android:id="@+id/idDateDontKnow_GiveMoreInfoAct"
+            android:id="@+id/idDateDontKnow_AddDonorActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -94,10 +95,10 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/idSubmit_GiveMoreInfoAct"
+        android:id="@+id/idAdd_AddDonorActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Submit"
+        android:text="Add Donor"
         android:layout_marginTop="5dp"
         android:onClick="submitOnClickListener"/>
 

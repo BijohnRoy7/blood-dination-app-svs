@@ -1,5 +1,6 @@
 package invenz.roy.blooddonationapp1.activities;
 
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -57,6 +58,7 @@ public class BloodBankActivity extends AppCompatActivity {
         recyclerViewBloodBank = findViewById(R.id.idBloodBankRecView_BloodBankAct);
         recyclerViewBloodBank.setLayoutManager(new LinearLayoutManager(BloodBankActivity.this));
 
+        cityList.add("-- select city --");
         cityList.add("Barisal");
         cityList.add("Chittagong");
         cityList.add("Dhaka");
@@ -74,12 +76,17 @@ public class BloodBankActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, final int position, long id) {
 
-                selectedCity = cityList.get(position);
+
+                if (position == 0){
+                    Snackbar.make(findViewById(android.R.id.content), "Select city please", Snackbar.LENGTH_SHORT).show();
+
+                }else {
+                    selectedCity = cityList.get(position);
 
 
-                /*###          getting Blood Banks              ###*/
-                getBloodBanksByCityName(selectedCity);
-
+                    /*###          getting Blood Banks              ###*/
+                    getBloodBanksByCityName(selectedCity);
+                }
             }
 
             @Override

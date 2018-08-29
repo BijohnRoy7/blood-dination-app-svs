@@ -39,7 +39,9 @@
         <activity android:name=".activities.BloodBankActivity" />
         <activity android:name=".activities.SearchActivity" />
         <activity android:name=".activities.FactsActivity" />
-        <activity android:name=".activities.MyAccountActivity"></activity>
+        <activity android:name=".activities.MyAccountActivity" />
+        <activity android:name=".activities.PostRequestActivity" />
+        <activity android:name=".activities.AddDonorActivity"></activity>
     </application>
 
 </manifest>

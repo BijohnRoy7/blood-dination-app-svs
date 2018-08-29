@@ -10,8 +10,11 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import invenz.roy.blooddonationapp1.R;
+import invenz.roy.blooddonationapp1.activities.AddDonorActivity;
 import invenz.roy.blooddonationapp1.activities.BloodBankActivity;
 import invenz.roy.blooddonationapp1.activities.FactsActivity;
+import invenz.roy.blooddonationapp1.activities.MyAccountActivity;
+import invenz.roy.blooddonationapp1.activities.PostRequestActivity;
 import invenz.roy.blooddonationapp1.activities.SearchActivity;
 
 /**
@@ -73,11 +76,38 @@ public class ProfileFragment extends Fragment {
         });
 
 
+
+        linearLayoutPostRequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), PostRequestActivity.class));
+            }
+        });
+
+
+
+
         linearLayoutBloodBanks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             startActivity(new Intent(getContext(), BloodBankActivity.class));
 
+            }
+        });
+
+        linearLayoutAddDonor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), AddDonorActivity.class));
+
+            }
+        });
+
+
+        linearLayoutMyAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), MyAccountActivity.class));
             }
         });
 

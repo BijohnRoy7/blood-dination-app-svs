@@ -11,6 +11,9 @@ public class Urls {
     public static final String GET_BLOOD_BANKS_BY_CITY_URL = DEFAULT_URL+"GetBloodBanksByCity.php";
     public static final String SEARCH_ALL_DONORS_URL = DEFAULT_URL+"GetAllDonors.php";
     public static final String GET_ALL_FACTS_URL = DEFAULT_URL+"GetAllFacts.php";
+    public static final String SAVE_POST_URL = DEFAULT_URL+"SaveUserPost.php";
+    public static final String SAVE_DONATION_DATE_URL = DEFAULT_URL+"SaveDonationDate.php";
+    public static final String ADD_DONOR_URL = DEFAULT_URL+"AddDonor.php";
 
 
 

@@ -1,9 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MyAccountActivity">
+    tools:context=".activities.MyAccountActivity"
+    android:orientation="vertical"
+    android:weightSum="12"
+    android:padding="10dp">
 
-</android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Name: "
+            android:textSize="18dp"
+            android:textStyle="bold"/>
+
+
+        <TextView
+            android:id="@+id/idName_myAccountActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textSize="18dp"/>
+
+    </LinearLayout>
+
+
+    <!--###############-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Division: "
+            android:textSize="18dp"
+            android:textStyle="bold"/>
+
+
+        <TextView
+            android:id="@+id/idDivision_myAccountActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textSize="18dp"/>
+
+    </LinearLayout>
+
+    <!--###############-->
+
+
+    <!--#################-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="District: "
+            android:textSize="18dp"
+            android:textStyle="bold"/>
+
+
+        <TextView
+            android:id="@+id/idDistrict_myAccountActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textSize="18dp"/>
+
+    </LinearLayout>
+    <!--#################-->
+
+
+    <!--######################-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Contact No : "
+            android:textSize="18dp"
+            android:textStyle="bold"/>
+
+
+        <TextView
+            android:id="@+id/idMobile_myAccountActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textSize="18dp"/>
+
+    </LinearLayout>
+    <!--######################-->
+
+
+    <!--######################-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Email : "
+            android:textSize="18dp"
+            android:textStyle="bold"/>
+
+
+        <TextView
+            android:id="@+id/idEmail_myAccountActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textSize="18dp"/>
+
+    </LinearLayout>
+    <!--######################-->
+
+    <!--######################-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Blood Group : "
+            android:textSize="18dp"
+            android:textStyle="bold"/>
+
+
+        <TextView
+            android:id="@+id/idBloodGroup_myAccountActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textSize="18dp"/>
+
+    </LinearLayout>
+    <!--######################-->
+
+
+    <!--######################-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="Last Donation Date : "
+            android:textSize="18dp"
+            android:textStyle="bold"/>
+
+
+        <TextView
+            android:id="@+id/idDonationDate_myAccountActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textSize="18dp"/>
+        <TextView
+            android:id="@+id/idDontKnow_myAccountActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text= "Don\'t know "
+            android:layout_marginLeft="8dp"
+            android:textSize="18dp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+    <!--######################-->
+
+
+
+
+</LinearLayout>
