@@ -1,12 +1,11 @@
-package invenz.roy.blooddonationapp1;
+package invenz.roy.blooddonationapp1.activities;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -32,7 +31,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import invenz.roy.blooddonationapp1.notification.MyFirebaseInstanceIdService;
+import invenz.roy.blooddonationapp1.R;
+import invenz.roy.blooddonationapp1.fragments.EditUserInfoFragment;
 import invenz.roy.blooddonationapp1.utils.Constants;
 import invenz.roy.blooddonationapp1.utils.Urls;
 
@@ -44,6 +44,7 @@ public class HomeActivity extends AppCompatActivity
     private String phoneNumber, userName, email, division, district, bloodGroup;
     private FirebaseAuth mAuth;
     private String userId;
+    private Fragment fragment = null;;
 
 
     @Override
@@ -242,6 +243,8 @@ public class HomeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+
+
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
@@ -250,7 +253,10 @@ public class HomeActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_manage) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_edit_info) {
+
+             fragment = new EditUserInfoFragment();
+             setFragment(fragment);
 
         } else if (id == R.id.nav_logout) {
             mAuth.signOut();
@@ -262,5 +268,18 @@ public class HomeActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+
+
+
+    }
+
+    public void setFragment(Fragment fragment) {
+
+
+        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.idFrameLayout, fragment);
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        transaction.commit();
     }
 }

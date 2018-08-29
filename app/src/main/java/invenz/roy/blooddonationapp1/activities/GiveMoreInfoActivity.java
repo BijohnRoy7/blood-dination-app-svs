@@ -1,4 +1,4 @@
-    package invenz.roy.blooddonationapp1;
+    package invenz.roy.blooddonationapp1.activities;
 
     import android.content.Intent;
     import android.content.SharedPreferences;
@@ -12,6 +12,7 @@
     import android.widget.Spinner;
     import android.widget.Toast;
 
+    import invenz.roy.blooddonationapp1.R;
     import invenz.roy.blooddonationapp1.utils.Constants;
 
     public class GiveMoreInfoActivity extends AppCompatActivity {

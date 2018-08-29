@@ -6,6 +6,8 @@ public class Urls {
     public static final String SAVE_USER_INFO_URL = DEFAULT_URL+"AddUserInfo.php";
     public static final String STORE_TOKEN_URL = DEFAULT_URL+"StoreToken.php";
     public static final String IS_FIREBASE_ID_EXISTS_URL = DEFAULT_URL+"FirebaseIdExists.php";
+    public static final String GET_USER_INFO_URL = DEFAULT_URL+"GetUserInfo.php";
+    public static final String EDIT_USER_INFO_URL = DEFAULT_URL+"EditUserInfo.php";
 
 
 

@@ -6,7 +6,7 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
-import invenz.roy.blooddonationapp1.HomeActivity;
+import invenz.roy.blooddonationapp1.activities.HomeActivity;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 

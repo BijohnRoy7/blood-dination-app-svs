@@ -1,4 +1,4 @@
-package invenz.roy.blooddonationapp1;
+package invenz.roy.blooddonationapp1.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,6 +25,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
+import invenz.roy.blooddonationapp1.R;
 import invenz.roy.blooddonationapp1.utils.Constants;
 
 public class VerifyPhoneActivity extends AppCompatActivity {

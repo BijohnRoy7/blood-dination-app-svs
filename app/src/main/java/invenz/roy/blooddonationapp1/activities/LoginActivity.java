@@ -1,4 +1,4 @@
-package invenz.roy.blooddonationapp1;
+package invenz.roy.blooddonationapp1.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,7 +12,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -38,6 +37,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import invenz.roy.blooddonationapp1.R;
 import invenz.roy.blooddonationapp1.utils.Constants;
 import invenz.roy.blooddonationapp1.utils.Urls;
 
